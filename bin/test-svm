@@ -1,0 +1,48 @@
+#!/bin/sh
+
+stderr=$(mktemp)
+stdout=$(mktemp)
+
+VG=
+
+predefvo=$(mktemp)
+vscheme -predef | uft ho-vo > $predefvo
+
+
+case $1 in
+  -v|-valgrind) VG="valgrind --leak-check=full" ; shift ;;
+  -*) echo "Unknown option $1" ; exit 1 ;;
+esac
+
+
+finish() {
+    rm -f $stderr $stdout $predefvo
+    if test "$1" -ne 0; then
+      echo "FAILED!" >&2
+    fi
+    exit $1
+}
+
+
+for i
+do
+  echo "$i"
+  placeholder='(check-assert #t)'
+  if egrep -s -w "check-expect|check-assert" "$i" > /dev/null; then
+    placeholder=
+  fi
+  echo "$placeholder" | uft ho-vo "$i" - | $VG svm $predefvo - > $stdout
+
+  if test -n "$(cat "$stderr")"; then
+    cat "$stderr" >&2
+    finish 1
+  elif egrep -s 'The only test passed\.|Both tests passed\.|All [0-9]* tests passed\.' "$stdout"; then
+    : do nothing
+  else
+    finish 1
+  fi
+done
+
+finish 0
+
+

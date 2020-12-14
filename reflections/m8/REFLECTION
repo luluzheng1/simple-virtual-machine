@@ -1,0 +1,60 @@
+MODULE 8: TRANSLATING FUNCTIONS
+11/02/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming partner,
+Mert Erden.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                 |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  Never: 52, 66
+    e1 and e2 on line 52 and 66 will never be in tail position because the only
+    way for either of those two functions to call return is in the K.FUNCODE 
+    case for toReg, in which e1 and e2 do not appear in tail position.
+    Always: 79
+    e1 and e2 on line 79 are always be in tail position because any expression 
+    in return occurs in tail position. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  We use r0 as the destination register for primarily two reasons:
+    1. r0 is conventionally used to store the function, which will be stored in 
+    the globals table. We have a reference to the function and therefore 
+    keeping r0 is not necessary.
+    2. If the function has any parameters then it must always be true that 
+    every register x through x_n must be consecutive. Therefore there isn't a 
+    case where r0 will be revisted at one point to store information about a 
+    register. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  This case is handled on line 50. The program will just evaluate the   
+    primitive for its effect and leave the register unset. We chose this as it 
+    is because we prefer that the user be able to use an effective primitive 
+    for the purpose of its effects, which then setting the register seems 
+    trivial since we don't expect the user to utilize that register for a 
+    primitive that is only for its side effects. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  All we did was add calls for the uncovered cases, namely, Funcall. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  Personally, I don't much advantage for condensing the modules to free up 
+    time for finale practice. I feel that I learn the most when working these 
+    weekly modules, and that the learning experience could be hurt by taking 
+    extra time away. Every week I finish the module by night time on 
+    Sunday, so I feel like any increased workload would be stressful for 
+    students. Theoretically, the alternatives make more sense in terms of 
+    structuring the modules so that the material transitions smoother from 
+    module to module. It prevents having to split code generation across two 
+    non consecutive modules, but I think that doing all of the code generation 
+    in one module would be stressful and potentially discouraging for students 
+    who are not familiar with call instructions. With the second 
+    alternative, each module is nicely contained, but students might have 
+    difficulty remembering call instructions by the time they get to module 7. 
+    Again, I'm concerned about putting the entirety of code generation 
+    in one module, which may come off intimidating to future SVM
+    students.   
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  I've learned that when implementing a new feature in an already existing 
+    code base, there's a fine balance between thinking at the level at which 
+    the feature is presented to the user and how it can be translated down into 
+    the machine level. Things that our team had to consider is how the 
+    syntactial structure of coroutines operators appears from the user's 
+    perspective and where in the translation pipeline matters the most in 
+    regards to the addition of the new feature. It was hard to come up with an 
+    answer that satisfied both.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

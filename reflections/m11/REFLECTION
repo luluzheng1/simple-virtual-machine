@@ -1,0 +1,77 @@
+MODULE 11: GARBAGE COLLECTION
+11/23/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming
+partner, Mert Erden.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  Python Lists allow users to initialize an list like:
+    a_list = [x for x in range(100)]
+    This allows the user to write code without thinking about allocation at all.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  Below is the valgrind output for running alloc.vo through the svm 
+    The only test passed.
+    Requested 48,554 bytes in 1,010 allocations
+    4 garbage collections copied 2,285 bytes
+    The collector copied 0.05 bytes for every byte requested
+    At exit, heap contained 2 used pages and 3 available pages
+    Total heap size is 32,000 bytes held in 5 pages
+    ==30721==
+    ==30721== HEAP SUMMARY:
+    ==30721==     in use at exit: 0 bytes in 0 blocks
+    ==30721==   total heap usage: 1,523 allocs, 471 frees, 261,743 bytes
+                allocated
+    ==30721==
+    ==30721== All heap blocks were freed -- no leaks are possible
+    ==30721==
+    ==30721== For counts of detected and suppressed errors, rerun with: -v
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  Registers are scanned on lines 650 in vmheap.c. We know how many registers 
+    to scan because we perform an explicit check, we determine the biggest 
+    register index to scan by adding 255 to our current register window on line 
+    645. This is liberal, and we plan to make it more conservative in the 
+    future. Literals are scanned on lines 656. We know how many literals to 
+    scan because we have a num_literals variable in the VMState representation.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  Line 310 in vmrun.c initializes the payload for a ConsCell. The VMNEW macro
+    expands to initializing the payload's forwarded pointer to NULL on line 2
+    of gcmeta.h.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  If a value that's gray or black is placed on the gray stack a second time, 
+    then the value and its successors would then be copied a second time to 
+    to-space. To-space would contain duplicate values, which takes up 
+    unnecessary memory. Furthermore, the pointer previously pointing to the 
+    first copied object would be lost, so we lose memory. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  VMSAVE flushes the current register-window pointer because the pointer
+    might point to heap-allocated data. Any heap-allocated data might move 
+    during garbage collection, so the register-window pointer has to be flushed 
+    to the cache. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  An Instruction * pointer is considered an "interior pointer", which is a 
+    pointer to some memory location within a heap object, but not to the 
+    beginning of the heap object. The garbage collector then needs to find the 
+    start of the object, which greatly complicates code. Without knowing the 
+    size of the object, it is difficult to do this. This is a barrier to 
+    performant garbage collection.  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  After a string has been copied, its forward pointer becomes NON-NULL. If
+    forward_string copies a payload without checking its forwarding pointer,
+    it might copy the value that's already copied. We would lose the forwarded
+    pointer, so now we lose access to the previously copied value.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+9.  I would increase gamma to set the heap-growth policy parameter to do less 
+    work. This is because a larger gamma requires a larger heap, which means
+    that more memory holds no data. This memory is used to reduce time spent
+    collecting and time determining whether an object needs to be freed. To
+    trade time for space, I would decrease gamma, which means that there are
+    less allocations between collections, so there is more work to be done. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+10. If a string value appears in two different VM registers, whichever value in 
+    the register that comes first in ascending order will be forwarded first. 
+    When scanning the second register, the string will already have been 
+    forwarded, therefore it's forwarded pointer is NON-NULL and it won't be 
+    copied a second time. Rather it will just return same forwarded pointer, 
+    p->forwarded on line 423 in vmheap.c.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

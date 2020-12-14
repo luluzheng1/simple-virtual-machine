@@ -1,0 +1,87 @@
+MODULE 2: VIRTUAL-MACHINE LOADER
+09/21/2020
+Lulu Zheng
+* Acknowledgment: I discussed conceptually with my programming partner,
+Mert Erden, about some of the questions in the learning outcomes.
+Particularly, #4, 7, and 8.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                 |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  I believe the instruction table includes 15 different instructions and that
+    each entry includes a parsing function and an unparsing template.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  I believe the vmrun function recognizes 15 different opcodes and that each 
+    each opcode has been implemented with a good-faith effort.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  I will enumerate the forms of literal values that can be written in Ruby.
+    In the following, I list the Ruby literals:
+    - Integer literal: Yes, we can express an integer literal in our virtual 
+    object code. 
+    - String literal: Yes, we can express a string literal in our virtual 
+    object code.
+    - True and False literals: Ruby has no Boolean data type. Instead, it has a 
+    TrueClass and FalseClass. Regardless of this distinction, our virtual 
+    object code can handle true and false literals. 
+    - Set literal: Maybe, if we want to represent set literals in our virtual 
+    object code, we would need some mechanism that could first format a set 
+    into a sequence of machine instructions.
+    - Array Literal: Maybe, we would first need to format an array into a 
+    sequence of machine instructions. 
+    - Hash literal: Maybe, we would first need to format a hash into a sequence 
+    of machine instructions.
+    An array literal would be materialized by first formatting the array into a 
+    sequence of load values instructions, then initializing the array literal 
+    to an empty array, and finally populating the array with values through a 
+    sequence of instructions. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  I believe we would be able to reuse the loader and the instruction table.  
+    We have implemented a parser and loader than can handle any sequence of 
+    instructions that it supports. If Ruby literals could be materialized to a 
+    sequence of machine instructions, then our code can handle those inputs.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  Our implementation fulfills two of the three properties, namely, adding a  
+    literal to the pool takes constant time and implementing literal_slot is 
+    quick and easy. We wanted the virtual machine to be able to add a value to 
+    the literal pool quickly since it is a common operation. Our implementation 
+    of literal_slot does not guarantee that there is no wasted space for two 
+    reasons. Firstly, the simplest way to avoid duplicates would be a linear 
+    search in the literal_slot for preexisting values. For now, we do not see 
+    sacrificing the constant time space to insert a value for checking 
+    duplicates as a worthwhile trade. And secondly, we could have utilized a 
+    hashtable-like data structure avoid duplicates. However, implementing such 
+    data structure would compromise the simplicity and readability of our 
+    literal_slot. Although it is true that by not checking for duplicates, our 
+    implementation is not optimized for space and will probably not scale well, 
+    we are happy with the implementation for now as it is suitable for the 
+    scale of the programs we are writing at the current stage of the virtual 
+    machine.
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  In iparsers.c, lines 136-154, the parser handles the literals that are not 
+    <number> by distinguishing the different forms of literals using an if 
+    statement.
+    In iparsers.c, line 164, the parser handles the literals that are not 
+    <number> by calling a helper function. 
+    In iparsers.c, line 170, the parser handles the <number> literal.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  An invariant that our virtual machine code must satisfy is that it must 
+    ensure that there is an instruction to be parsed. This is not true for the 
+    virtual object code. For example, our goto object code does not satisfy 
+    such invariant. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  Unfortunately, none of the forms of literal except for nil can be embedded 
+    into a VM value. Our parser relies on the literal pool to store the literal 
+    values. Without the VM state, we would not have access to the literals 
+    stored in the literal pool. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+9.  The following instructions can be parsed into virtual object code withou 
+    access to a VM state. This is because they don't need to access to the 
+    literals pool, registers, the globals table. 
+    - Halt
+    - Goto
+    - Zero
+    - Mov
+    - Add
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+10. The premises are implemented in our literal_slot function in vmstate.c, 
+    particularly lines 47-58. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

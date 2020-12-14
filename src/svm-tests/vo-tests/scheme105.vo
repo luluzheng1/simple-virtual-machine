@@ -1,0 +1,757 @@
+.load module 563
+.load 2 function 1 28
+null? 2 1
+if 2
+goto 25
+car 2 1
+pair? 2 2
+if 2
+goto 10
+getglobal 2 string 6 97 112 112 101 110 100
+getglobal 3 string 6 109 105 114 114 111 114
+cdr 4 1
+call 3 3 4
+getglobal 4 string 5 108 105 115 116 49
+car 5 1
+call 4 4 5
+tailcall 2 4
+goto 11
+getglobal 2 string 6 97 112 112 101 110 100
+getglobal 3 string 6 109 105 114 114 111 114
+cdr 4 1
+call 3 3 4
+getglobal 4 string 5 108 105 115 116 49
+getglobal 5 string 6 109 105 114 114 111 114
+car 6 1
+call 5 5 6
+call 4 4 5
+tailcall 2 4
+goto 2
+return 1
+setglobal 2 string 6 109 105 114 114 111 114
+.load 2 function 1 24
+null? 2 1
+if 2
+goto 21
+car 2 1
+pair? 2 2
+if 2
+goto 8
+car 2 1
+getglobal 3 string 7 102 108 97 116 116 101 110
+cdr 4 1
+call 3 3 4
+cons 0 2 3
+return 0
+goto 9
+getglobal 2 string 6 97 112 112 101 110 100
+getglobal 3 string 7 102 108 97 116 116 101 110
+car 4 1
+call 3 3 4
+getglobal 4 string 7 102 108 97 116 116 101 110
+cdr 5 1
+call 4 4 5
+tailcall 2 4
+goto 2
+return 1
+setglobal 2 string 7 102 108 97 116 116 101 110
+.load 3 function 2 25
+null? 3 1
+if 3
+goto 21
+null? 3 2
+if 3
+goto 15
+getglobal 3 string 6 101 113 117 97 108 63
+car 4 1
+car 5 2
+call 3 3 5
+if 3
+goto 4
+loadliteral 0 false
+return 0
+goto 5
+getglobal 3 string 14 102 114 111 110 116 45 115 117 98 108 105 115 116 63
+cdr 4 1
+cdr 5 2
+tailcall 3 5
+goto 3
+loadliteral 0 false
+return 0
+goto 3
+loadliteral 0 true
+return 0
+setglobal 3 string 14 102 114 111 110 116 45 115 117 98 108 105 115 116 63
+.load 3 function 2 21
+null? 3 1
+if 3
+goto 17
+getglobal 3 string 6 101 113 117 97 108 63
+car 4 1
+car 5 2
+call 3 3 5
+if 3
+goto 6
+getglobal 3 string 15 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63
+mov 4 1
+cdr 5 2
+tailcall 3 5
+goto 5
+getglobal 3 string 14 102 114 111 110 116 45 115 117 98 108 105 115 116 63
+mov 4 1
+mov 5 2
+tailcall 3 5
+goto 3
+loadliteral 0 true
+return 0
+setglobal 3 string 15 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63
+.load 3 function 2 20
+getglobal 3 string 2 111 114
+loadliteral 4 0
+= 4 1 4
+null? 5 2
+call 3 3 5
+if 3
+goto 12
+getglobal 3 string 6 97 112 112 101 110 100
+getglobal 4 string 5 108 105 115 116 49
+car 5 2
+call 4 4 5
+getglobal 5 string 4 116 97 107 101
+loadliteral 6 1
+- 6 1 6
+cdr 7 2
+call 5 5 7
+tailcall 3 5
+goto 3
+loadliteral 0 emptylist
+return 0
+setglobal 3 string 4 116 97 107 101
+.load 3 function 2 14
+getglobal 3 string 2 111 114
+loadliteral 4 0
+= 4 1 4
+null? 5 2
+call 3 3 5
+if 3
+goto 7
+getglobal 3 string 4 100 114 111 112
+loadliteral 4 1
+- 4 1 4
+cdr 5 2
+tailcall 3 5
+goto 2
+return 2
+setglobal 3 string 4 100 114 111 112
+.load 3 function 2 19
+getglobal 3 string 2 111 114
+null? 4 1
+null? 5 2
+call 3 3 5
+if 3
+goto 12
+getglobal 3 string 5 108 105 115 116 50
+car 4 1
+car 5 2
+call 3 3 5
+getglobal 4 string 3 122 105 112
+cdr 5 1
+cdr 6 2
+call 4 4 6
+cons 0 3 4
+return 0
+goto 3
+loadliteral 0 emptylist
+return 0
+setglobal 3 string 3 122 105 112
+.load 2 function 1 14
+null? 2 1
+if 2
+goto 10
+getglobal 2 string 4 99 97 97 114
+mov 3 1
+call 2 2 3
+getglobal 3 string 8 108 105 115 116 45 107 101 121
+cdr 4 1
+call 3 3 4
+cons 0 2 3
+return 0
+goto 3
+loadliteral 0 emptylist
+return 0
+setglobal 2 string 8 108 105 115 116 45 107 101 121
+.load 2 function 1 14
+null? 2 1
+if 2
+goto 10
+getglobal 2 string 6 97 112 112 101 110 100
+getglobal 3 string 4 99 100 97 114
+mov 4 1
+call 3 3 4
+getglobal 4 string 14 108 105 115 116 45 97 116 116 114 105 98 117 116 101
+cdr 5 1
+call 4 4 5
+tailcall 2 4
+goto 3
+loadliteral 0 emptylist
+return 0
+setglobal 2 string 14 108 105 115 116 45 97 116 116 114 105 98 117 116 101
+.load 2 function 1 14
+null? 2 1
+if 2
+goto 10
+getglobal 2 string 5 108 105 115 116 50
+getglobal 3 string 8 108 105 115 116 45 107 101 121
+mov 4 1
+call 3 3 4
+getglobal 4 string 14 108 105 115 116 45 97 116 116 114 105 98 117 116 101
+mov 5 1
+call 4 4 5
+tailcall 2 4
+goto 3
+loadliteral 0 emptylist
+return 0
+setglobal 2 string 5 117 110 122 105 112
+getglobal 0 string 6 109 105 114 114 111 114
+loadliteral 1 emptylist
+call 0 0 1
+check 0 string 12 40 109 105 114 114 111 114 32 39 40 41 41
+loadliteral 0 emptylist
+expect 0 string 3 39 40 41
+getglobal 0 string 6 109 105 114 114 111 114
+loadliteral 1 1
+loadliteral 2 2
+loadliteral 3 3
+loadliteral 4 4
+loadliteral 5 5
+loadliteral 6 emptylist
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+call 0 0 1
+check 0 string 21 40 109 105 114 114 111 114 32 39 40 49 32 50 32 51 32 52 32 53 41 41
+loadliteral 0 5
+loadliteral 1 4
+loadliteral 2 3
+loadliteral 3 2
+loadliteral 4 1
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 12 39 40 53 32 52 32 51 32 50 32 49 41
+getglobal 0 string 6 109 105 114 114 111 114
+loadliteral 1 string 1 97
+loadliteral 2 string 1 98
+loadliteral 3 5
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 99
+loadliteral 3 string 1 100
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 string 1 101
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+call 0 0 1
+check 0 string 29 40 109 105 114 114 111 114 32 39 40 40 97 32 40 98 32 53 41 41 32 40 99 32 100 41 32 101 41 41
+loadliteral 0 string 1 101
+loadliteral 1 string 1 100
+loadliteral 2 string 1 99
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 5
+loadliteral 3 string 1 98
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 string 1 97
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 20 39 40 101 32 40 100 32 99 41 32 40 40 53 32 98 41 32 97 41 41
+getglobal 0 string 7 102 108 97 116 116 101 110
+loadliteral 1 emptylist
+call 0 0 1
+check 0 string 13 40 102 108 97 116 116 101 110 32 39 40 41 41
+loadliteral 0 emptylist
+expect 0 string 3 39 40 41
+getglobal 0 string 7 102 108 97 116 116 101 110
+loadliteral 1 string 1 73
+loadliteral 2 string 5 67 104 105 110 103
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 85
+loadliteral 3 string 5 84 104 97 110 116
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 string 1 69
+loadliteral 4 string 4 67 111 108 105
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+call 0 0 1
+check 0 string 41 40 102 108 97 116 116 101 110 32 39 40 40 73 32 67 104 105 110 103 41 32 40 85 32 84 104 97 110 116 41 32 40 69 32 67 111 108 105 41 41 41
+loadliteral 0 string 1 73
+loadliteral 1 string 5 67 104 105 110 103
+loadliteral 2 string 1 85
+loadliteral 3 string 5 84 104 97 110 116
+loadliteral 4 string 1 69
+loadliteral 5 string 4 67 111 108 105
+loadliteral 6 emptylist
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 25 39 40 73 32 67 104 105 110 103 32 85 32 84 104 97 110 116 32 69 32 67 111 108 105 41
+getglobal 0 string 7 102 108 97 116 116 101 110
+loadliteral 1 string 1 97
+loadliteral 2 string 1 98
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 99
+loadliteral 3 string 1 100
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 string 1 101
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+call 0 0 1
+check 0 string 26 40 102 108 97 116 116 101 110 32 39 40 40 97 32 98 41 32 40 99 32 100 41 32 101 41 41
+loadliteral 0 string 1 97
+loadliteral 1 string 1 98
+loadliteral 2 string 1 99
+loadliteral 3 string 1 100
+loadliteral 4 string 1 101
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 12 39 40 97 32 98 32 99 32 100 32 101 41
+getglobal 0 string 3 110 111 116
+getglobal 1 string 15 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63
+loadliteral 2 string 1 97
+loadliteral 3 string 1 98
+loadliteral 4 string 1 99
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 string 1 120
+loadliteral 4 string 1 97
+loadliteral 5 string 1 121
+loadliteral 6 string 1 98
+loadliteral 7 string 1 122
+loadliteral 8 string 1 99
+loadliteral 9 emptylist
+cons 8 8 9
+cons 7 7 8
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+call 1 1 3
+call 0 0 1
+check-assert 0 string 47 40 110 111 116 32 40 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63 32 39 40 97 32 98 32 99 41 32 39 40 120 32 97 32 121 32 98 32 122 32 99 41 41 41
+getglobal 0 string 15 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63
+loadliteral 1 string 1 97
+loadliteral 2 string 1 121
+loadliteral 3 string 1 98
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 120
+loadliteral 3 string 1 97
+loadliteral 4 string 1 121
+loadliteral 5 string 1 98
+loadliteral 6 string 1 122
+loadliteral 7 string 1 99
+loadliteral 8 emptylist
+cons 7 7 8
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check-assert 0 string 41 40 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63 32 39 40 97 32 121 32 98 41 32 39 40 120 32 97 32 121 32 98 32 122 32 99 41 41
+getglobal 0 string 15 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63
+loadliteral 1 string 1 120
+loadliteral 2 emptylist
+cons 1 1 2
+loadliteral 2 string 1 120
+loadliteral 3 string 1 97
+loadliteral 4 string 1 121
+loadliteral 5 string 1 98
+loadliteral 6 string 1 122
+loadliteral 7 string 1 99
+loadliteral 8 emptylist
+cons 7 7 8
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check-assert 0 string 37 40 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63 32 39 40 120 41 32 39 40 120 32 97 32 121 32 98 32 122 32 99 41 41
+getglobal 0 string 15 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63
+loadliteral 1 emptylist
+loadliteral 2 string 1 120
+loadliteral 3 string 1 97
+loadliteral 4 string 1 121
+loadliteral 5 string 1 98
+loadliteral 6 string 1 122
+loadliteral 7 string 1 99
+loadliteral 8 emptylist
+cons 7 7 8
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check-assert 0 string 36 40 99 111 110 116 105 103 45 115 117 98 108 105 115 116 63 32 39 40 41 32 39 40 120 32 97 32 121 32 98 32 122 32 99 41 41
+getglobal 0 string 4 116 97 107 101
+loadliteral 1 1
+loadliteral 2 1
+loadliteral 3 2
+loadliteral 4 3
+loadliteral 5 4
+loadliteral 6 5
+loadliteral 7 emptylist
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check 0 string 21 40 116 97 107 101 32 49 32 39 40 49 32 50 32 51 32 52 32 53 41 41
+loadliteral 0 1
+loadliteral 1 emptylist
+cons 0 0 1
+expect 0 string 4 39 40 49 41
+getglobal 0 string 4 116 97 107 101
+loadliteral 1 1
+loadliteral 2 emptylist
+call 0 0 2
+check 0 string 12 40 116 97 107 101 32 49 32 39 40 41 41
+loadliteral 0 emptylist
+expect 0 string 3 39 40 41
+getglobal 0 string 4 116 97 107 101
+loadliteral 1 6
+loadliteral 2 1
+loadliteral 3 2
+loadliteral 4 3
+loadliteral 5 4
+loadliteral 6 5
+loadliteral 7 emptylist
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check 0 string 21 40 116 97 107 101 32 54 32 39 40 49 32 50 32 51 32 52 32 53 41 41
+loadliteral 0 1
+loadliteral 1 2
+loadliteral 2 3
+loadliteral 3 4
+loadliteral 4 5
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 12 39 40 49 32 50 32 51 32 52 32 53 41
+getglobal 0 string 4 100 114 111 112
+loadliteral 1 1
+loadliteral 2 1
+loadliteral 3 2
+loadliteral 4 3
+loadliteral 5 4
+loadliteral 6 5
+loadliteral 7 emptylist
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check 0 string 21 40 100 114 111 112 32 49 32 39 40 49 32 50 32 51 32 52 32 53 41 41
+loadliteral 0 2
+loadliteral 1 3
+loadliteral 2 4
+loadliteral 3 5
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 10 39 40 50 32 51 32 52 32 53 41
+getglobal 0 string 4 100 114 111 112
+loadliteral 1 0
+loadliteral 2 1
+loadliteral 3 2
+loadliteral 4 3
+loadliteral 5 4
+loadliteral 6 5
+loadliteral 7 emptylist
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check 0 string 21 40 100 114 111 112 32 48 32 39 40 49 32 50 32 51 32 52 32 53 41 41
+loadliteral 0 1
+loadliteral 1 2
+loadliteral 2 3
+loadliteral 3 4
+loadliteral 4 5
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 12 39 40 49 32 50 32 51 32 52 32 53 41
+getglobal 0 string 4 100 114 111 112
+loadliteral 1 3
+loadliteral 2 1
+loadliteral 3 2
+loadliteral 4 3
+loadliteral 5 4
+loadliteral 6 5
+loadliteral 7 emptylist
+cons 6 6 7
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check 0 string 21 40 100 114 111 112 32 51 32 39 40 49 32 50 32 51 32 52 32 53 41 41
+loadliteral 0 4
+loadliteral 1 5
+loadliteral 2 emptylist
+cons 1 1 2
+cons 0 0 1
+expect 0 string 6 39 40 52 32 53 41
+getglobal 0 string 3 122 105 112
+loadliteral 1 1
+loadliteral 2 2
+loadliteral 3 3
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 97
+loadliteral 3 string 1 98
+loadliteral 4 string 1 99
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check 0 string 23 40 122 105 112 32 39 40 49 32 50 32 51 41 32 39 40 97 32 98 32 99 41 41
+loadliteral 0 1
+loadliteral 1 string 1 97
+loadliteral 2 emptylist
+cons 1 1 2
+cons 0 0 1
+loadliteral 1 2
+loadliteral 2 string 1 98
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 3
+loadliteral 3 string 1 99
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 20 39 40 40 49 32 97 41 32 40 50 32 98 41 32 40 51 32 99 41 41
+getglobal 0 string 3 122 105 112
+loadliteral 1 emptylist
+loadliteral 2 emptylist
+call 0 0 2
+check 0 string 13 40 122 105 112 32 39 40 41 32 39 40 41 41
+loadliteral 0 emptylist
+expect 0 string 3 39 40 41
+getglobal 0 string 3 122 105 112
+loadliteral 1 string 1 99
+loadliteral 2 string 1 100
+loadliteral 3 string 1 101
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 99
+loadliteral 3 string 1 100
+loadliteral 4 string 1 101
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+call 0 0 2
+check 0 string 23 40 122 105 112 32 39 40 99 32 100 32 101 41 32 39 40 99 32 100 32 101 41 41
+loadliteral 0 string 1 99
+loadliteral 1 string 1 99
+loadliteral 2 emptylist
+cons 1 1 2
+cons 0 0 1
+loadliteral 1 string 1 100
+loadliteral 2 string 1 100
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 101
+loadliteral 3 string 1 101
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+expect 0 string 20 39 40 40 99 32 99 41 32 40 100 32 100 41 32 40 101 32 101 41 41
+getglobal 0 string 5 117 110 122 105 112
+loadliteral 1 emptylist
+call 0 0 1
+check 0 string 11 40 117 110 122 105 112 32 39 40 41 41
+loadliteral 0 emptylist
+expect 0 string 3 39 40 41
+getglobal 0 string 5 117 110 122 105 112
+loadliteral 1 string 1 72
+loadliteral 2 string 1 87
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 101
+loadliteral 3 string 1 111
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 string 1 108
+loadliteral 4 string 1 114
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+loadliteral 4 string 1 108
+loadliteral 5 string 1 108
+loadliteral 6 emptylist
+cons 5 5 6
+cons 4 4 5
+loadliteral 5 string 1 111
+loadliteral 6 string 1 100
+loadliteral 7 emptylist
+cons 6 6 7
+cons 5 5 6
+loadliteral 6 emptylist
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+call 0 0 1
+check 0 string 40 40 117 110 122 105 112 32 39 40 40 72 32 87 41 32 40 101 32 111 41 32 40 108 32 114 41 32 40 108 32 108 41 32 40 111 32 100 41 41 41
+loadliteral 0 string 1 72
+loadliteral 1 string 1 101
+loadliteral 2 string 1 108
+loadliteral 3 string 1 108
+loadliteral 4 string 1 111
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+loadliteral 1 string 1 87
+loadliteral 2 string 1 111
+loadliteral 3 string 1 114
+loadliteral 4 string 1 108
+loadliteral 5 string 1 100
+loadliteral 6 emptylist
+cons 5 5 6
+cons 4 4 5
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 emptylist
+cons 1 1 2
+cons 0 0 1
+expect 0 string 26 39 40 40 72 32 101 32 108 32 108 32 111 41 32 40 87 32 111 32 114 32 108 32 100 41 41
+getglobal 0 string 5 117 110 122 105 112
+loadliteral 1 string 1 73
+loadliteral 2 string 6 77 97 103 110 105 110
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 string 1 85
+loadliteral 3 string 5 84 104 97 110 116
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+loadliteral 3 string 1 69
+loadliteral 4 string 4 67 111 108 105
+loadliteral 5 emptylist
+cons 4 4 5
+cons 3 3 4
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+call 0 0 1
+check 0 string 40 40 117 110 122 105 112 32 39 40 40 73 32 77 97 103 110 105 110 41 32 40 85 32 84 104 97 110 116 41 32 40 69 32 67 111 108 105 41 41 41
+loadliteral 0 string 1 73
+loadliteral 1 string 1 85
+loadliteral 2 string 1 69
+loadliteral 3 emptylist
+cons 2 2 3
+cons 1 1 2
+cons 0 0 1
+loadliteral 1 string 6 77 97 103 110 105 110
+loadliteral 2 string 5 84 104 97 110 116
+loadliteral 3 string 4 67 111 108 105
+loadliteral 4 emptylist
+cons 3 3 4
+cons 2 2 3
+cons 1 1 2
+loadliteral 2 emptylist
+cons 1 1 2
+cons 0 0 1
+expect 0 string 30 39 40 40 73 32 85 32 69 41 32 40 77 97 103 110 105 110 32 84 104 97 110 116 32 67 111 108 105 41 41

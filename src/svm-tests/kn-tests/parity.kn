@@ -1,0 +1,57 @@
+(let ([$r2 (lambda ($r1) 
+              (letrec  ([$r2 
+                 (cons 
+                    (lambda ($closure $r1) 
+               (let ([$r2 (let ([$r2 0]) (= $r1 $r2))]) 
+                  (if $r2 
+                     #f 
+                     (let* ([$r2 (car (cdr $closure))]
+                           [$r3 (let ([$r3 1]) (- $r1 $r3))]) 
+                     ($r2 $r3))))) 
+                    (cons $r3 '()))] 
+                    
+                    [$r3 
+                 (cons 
+                    (lambda ($closure $r1) 
+                       (let ([$r2 (let ([$r2 0]) (= $r1 $r2))]) 
+                         (if $r2 
+                            #t 
+                            (let* ([$r2 (car (cdr $closure))]
+                                   [$r3 (let ([$r3 1]) (- $r1 $r3))]) 
+                              ($r2 $r3))))) 
+                    (cons $r2 '()))]) 
+                 (let ([$r4 (let* ([$r4 $r2]
+                                   [$r5 $r1]) 
+                              ($r4 $r5))]) 
+                   (if $r4 'odd 'even))))]) 
+  (set parity $r2))
+
+
+(begin 
+   (let ([$r0 (let* ([$r0 parity]
+                     [$r1 0]) 
+                ($r0 $r1))]) 
+     (check $r0 '(parity 0))) 
+   (let ([$r0 'even]) 
+     (expect $r0 ''even)))
+(begin 
+   (let ([$r0 (let* ([$r0 parity]
+                     [$r1 1]) 
+                ($r0 $r1))]) 
+     (check $r0 '(parity 1))) 
+   (let ([$r0 'odd]) 
+     (expect $r0 ''odd)))
+(begin 
+   (let ([$r0 (let* ([$r0 parity]
+                     [$r1 30]) 
+                ($r0 $r1))]) 
+     (check $r0 '(parity 30))) 
+   (let ([$r0 'even]) 
+     (expect $r0 ''even)))
+(begin 
+   (let ([$r0 (let* ([$r0 parity]
+                     [$r1 91]) 
+                ($r0 $r1))]) 
+     (check $r0 '(parity 91))) 
+   (let ([$r0 'odd]) 
+     (expect $r0 ''odd)))

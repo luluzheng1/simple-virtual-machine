@@ -1,0 +1,48 @@
+.load module 16
+.load 2 function 1 4
+.load 0 function 1 6
+getclslot 2 0 0
+.load 0 function 1 18
+getclslot 2 0 1
+loadliteral 3 0
+= 2 2 3
+if 2
+goto 13
+getglobal 2 string 11 97 112 112 108 121 78 84 105 109 101 115
+getclslot 3 0 1
+loadliteral 4 1
+- 3 3 4
+call 2 2 3
+getclslot 3 0 0
+call 2 2 3
+getclslot 3 0 0
+mov 4 1
+call 3 3 4
+tailcall 2 3
+goto 2
+return 1
+mkclosure 0 0 2
+setclslot 0 1 0
+setclslot 0 2 1
+return 0
+mkclosure 0 0 1
+setclslot 0 1 0
+return 0
+setglobal 2 string 11 97 112 112 108 121 78 84 105 109 101 115
+.load 2 function 1 3
+loadliteral 2 2
+* 0 1 2
+return 0
+setglobal 2 string 5 116 119 105 99 101
+getglobal 0 string 11 97 112 112 108 121 78 84 105 109 101 115
+loadliteral 1 2
+call 0 0 1
+getglobal 1 string 5 116 119 105 99 101
+call 0 0 1
+loadliteral 1 10
+call 0 0 1
+setglobal 0 string 16 97 112 112 108 121 84 119 105 99 101 50 84 105 109 101 115
+getglobal 0 string 16 97 112 112 108 121 84 119 105 99 101 50 84 105 109 101 115
+check 0 string 16 97 112 112 108 121 84 119 105 99 101 50 84 105 109 101 115
+loadliteral 0 40
+expect 0 string 2 52 48

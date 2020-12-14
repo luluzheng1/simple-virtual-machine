@@ -1,0 +1,8 @@
+let revapp xs ys = if null? xs
+                   then ys
+                   else revapp (tl xs) ((hd xs)::ys)
+
+let reverse xs = revapp xs []
+
+check-expect (reverse [1;2;3]) [3;2;1]
+

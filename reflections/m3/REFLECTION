@@ -1,0 +1,75 @@
+MODULE 3: PARSING AND UNPARSING: ASSEMBLY LANGUAGE AND VIRTUAL OBJECT CODE
+09/28/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming partner,
+Mert Erden. Particularly, #2 and #5.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                 |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  Algebraic laws for Kleisli composition:
+    (f >=> g) a = g v        when f a = OK v
+    (f >=> g) a = ERROR msg  when f a = ERROR msg
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  The commaSep parsing combinator can be defined as:
+    fun sepBy p sep  = curry (op ::) <$> p <~> sep <*> (fn xs => (sepBy p sep   
+                       xs) <|> succeed []
+
+    fun comma (#","::xs) = SOME (Error.OK #",", xs)
+      | comma _          = NONE
+
+    fun commaSep = sepBy p comma
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  Check instruction
+    Object Code: check 0 string 14 72 101 108 108 111 44 32 119 111 114 108 100 
+    33 10
+    Assembly Code: check r0 "hello world!"
+
+    The syntactic form for the check instruction is a good example. In the 
+    object code, the string is represented as a sequence of bytes that contains 
+    a character per byte. Comparatively, the object code is less readable than 
+    the Assembly code, which simply includes the string in alphanumeric 
+    characters. By convention, I would argue that r0 hints to the reader that 
+    it is a register, rather than just 0.
+
+    LoadLiteral instruction
+    Object Code: loadliteral 0 1
+    Assembly Code: r1 := 5
+
+    The syntactic form for the loadliteral instruction is another good example. 
+    In the object code, the registers are represented as digits, which again, 
+    does not hint at the fact that they are referring to specific registers. 
+    Without reading documentation, it is hard to identify which register is 
+    storing the literal and which register the literal will be loaded into. The 
+    assembly code, however, explicitly includes the literal (5), and uses the 
+    walrus operator to signify assignment.  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  As of now, the unparser (lines 193-215) that's implemented does not require 
+    a significant amount of code to unparse 15 different instructions. All of 
+    the instructions are detected by pattern matching, and the assembly code 
+    generated on the right hand side is a one-line string list. Based on the 
+    unparser, it seems that both can be accomplished in a single design. If we 
+    were to add more instructions to the unparse function, the increase in code
+    length would scale linearly to the number of instructions. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  Unfortunately, we did write a test file which passes the test mentioned in 
+    step 17, but it was not in our submission because it was placed in the /bin 
+    directory. I will submit it tonight along with the reflection. 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  The loadliteral instruction identifies a choice point in which the unparser
+    requires looking at more than one token. Since loading a literal could mean
+    loading an integer, string, floating point, boolean, etc., our unparser 
+    would need to look at the token that identifies the literal to be able to 
+    make a choice. If our grammar were LL, then we would not have been able to
+    make such distinction between loading an integer to loading a string.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  I believe that the UFT successfully parses and unparses. Running uft vs-vs 
+    unparse.vs generates the expected output according to our grammar. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  Our parser takes in a line of string from unparse.vs and embeds the string
+    into an instruction in the form of AssemblyCode.OBJECT_CODE. The unparser
+    will take an instruction that is wrapped in AssemblyCode.OBJECT_CODE and 
+    project it back to a string. Embedding is implemented on lines 110-135 and
+    projection is implemented on lines 193-215, both in asmparse.sml. In the 
+    case the projection fails, the unparser will default to the wild card case 
+    where resulting string is "an unknown assembly-code instruction".
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

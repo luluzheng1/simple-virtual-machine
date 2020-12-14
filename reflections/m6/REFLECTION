@@ -1,0 +1,74 @@
+MODULE 6: CODE GENERATION
+10/19/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming partner,
+Mert Erden.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                 |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  I believe my mapx function fulfills all criteria mentioned in this learning 
+    outcome.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  Line 77 in codegen.sml uses function composition in the body of 
+    while_effect. If we had written it using standarf list operations, every S 
+    function would be replaced by a pair of [] wrapping around the argument to 
+    S and every o would be replaced by @.  
+    [A.goto L] @ [A.deflabel L'] @ (forEffect' e') @ [A.deflabel L] @ (toReg' x 
+    e) @ [A.ifgoto x L']
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  The two classes of primitives are SETS_REGISTER and HAS_EFFECT. A 
+    SETS_REGISTER primitive is expected to only be encountered in the toReg'
+    function on lines 49 and 50 in codegen.sml, while a HAS_EFFECT primitive is 
+    expected to only be encountered in the forEffect' function on lines 62 and 
+    64 in codegen.sml. They are being treated differently because a 
+    SET_REGISTER instruction must not have side effect. If the two classes of 
+    primitives were indistinguishable from the UFT, undefined behavior could 
+    happen. For example, (set x (print 12)) would be valid code but what x 
+    actually sets to is undefned since (print 12) executes for side effects 
+    only.  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  An invariant that is common to both K-normal form and assembly language is 
+    that every name is unique and there is no ambiguity whereas that is not the 
+    case for Scheme.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  A precondition that the incoming K-normal form must satisfy is that given a 
+    let binding let y = e in e', no other let binding of y appears in this let 
+    expression. The translation handout refers to this precondition being 
+    satisftied as it's "safe to kill y". Only when such precondition is 
+    satisfied can we translate the let binding into an assignment. 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  The code won't look as nested because now instructions don't need to be 
+    wrapped in AssemblyCode.instr. However, if every VM instruction has its own 
+    value constructor, distinguishing a VM instrution from other parts of the 
+    code would require more knowledge about the implementation. Without the 
+    AssemblyCode.instr it's not be immediately obvious that a value constructor 
+    represents a constructor for a VM instruction. The user needs to know 
+    exactly which value constructors are VM instruction constructors that's 
+    recognized by the UFT/SVM. If I were building infrastructure to target a VM 
+    with a fixed, stable instruction set, I would probably allow each 
+    instruction to have its own value constructor, since all of the 
+    instructions are fixed and known to the user, there is no significant 
+    benefit of further wrapping the instruction in AssemblyCode.instr to 
+    indicate that it is a valid VM instruction. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  I believe that all tests in kntest.scm is accepted as valid K-normal form 
+    by the UFT and use primitives check and expect. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  We added four primitives, namely "~", "!", "Bool", and "zero", to 
+    primitives.sml. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+9.  A. KNormal Form, this feature can be implemented using setglobal and 
+       getglobal. 
+    B. Unambiguous VScheme to KNormal Form
+    C. Similar to what was done for DEFLABELs.
+
+    A. The source language. 
+    B. Unambiguous VScheme to KNormal Form
+    C. This is a variant of the if-else statement, so I would handle it 
+       similarly. 
+
+    A. Assembly Code.
+    B. Assembly Code to Object Code.
+    C. This is similar to the goto instruction so I would handle it similar to
+       other control-flow instructions. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

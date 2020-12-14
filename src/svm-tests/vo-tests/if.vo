@@ -1,0 +1,12 @@
+.load module 11
+loadliteral 77 string 5 68 111 110 101  33
+loadliteral 1 10
+loadliteral 2 1
+zero 0
+if 0 1
+goto 10
+print 0
+add 0 2 0
+goto 5
+print 77
+halt

@@ -1,0 +1,43 @@
+#!/usr/bin/python3
+import sys
+import uuid
+import os
+import subprocess
+import pprint
+
+HASKELL_LANGS = {"ns"}
+SML_LANGS = {"hox", "ho", "cl", "fo", "kn", "vs", "vo"}
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 2:
+        infile = sys.stdin.read()
+    elif len(sys.argv) > 2:
+        infile = ""
+        for file in sys.argv[2:]:
+            with open(file) as f:
+                infile += "".join(f.readlines())
+    else:
+        assert sys.argv >= 2, f"Expected To either read from file or read from stdin, instead got {sys.argv}"
+
+    in_lang, out_lang = sys.argv[1].split("-")
+    if in_lang in SML_LANGS and out_lang in SML_LANGS:
+        pass
+    elif in_lang in HASKELL_LANGS and out_lang in SML_LANGS:
+        tmp_file_name = f".{uuid.uuid4()}.ns"
+        with open(tmp_file_name, 'w') as f:
+            f.write(infile)
+        p = subprocess.Popen(
+            ["nscheme", f"{tmp_file_name}"], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.STDOUT)
+        os.remove(f"{tmp_file_name}")
+        infile = "".join(map(bytes.decode, p.stdout.readlines()))
+        in_lang = "ho"
+    elif in_lang in HASKELL_LANGS and out_lang in HASKELL_LANGS:
+        print(infile)
+        exit(0)
+    else:
+        raise Exception(f"There cannot convert {in_lang} to {out_lang}")
+    p = subprocess.Popen(
+        ["uft_sml", f"{in_lang}-{out_lang}"], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.STDOUT)
+    output = p.communicate(input=infile.encode())[0].decode()
+    print(output)

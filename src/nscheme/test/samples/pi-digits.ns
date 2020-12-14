@@ -1,0 +1,48 @@
+let floor x = if x < 1 then 0 else 1 + (floor (x - 1))
+
+let math1 q r t = floor ((10 * ((3 * q) + r)) / t)
+let math2 q k r l t = let 
+  sevenk = 7 * k
+  rtimesl = r * l
+  lhs = (q * (sevenk)) + (2 + rtimesl)
+  rhs = t * l
+  division = floor (lhs / rhs)
+  in division
+
+let calcPi n = let 
+  new_n = ref n
+  q = ref 1
+  r = ref 0
+  t = ref 1
+  k = ref 1
+  z = ref 3
+  l = ref 3
+  nr = ref 0
+  nn = ref 0 
+  in while (! new_n) > 0 do
+    if (((4 * (! q)) + (! r)) - (! t)) < ((! z) * (! t))
+    then begin
+      new_n := ((! new_n) - 1)
+      print (! z)
+      nr := (10 * ((! r) - ((! z) * (! t))))
+      z := ((math1 (! q) (! r) (! t)) - (10 * (! z)))
+      q := ((! q) * 10)
+      r := (! nr)
+    end 
+    else begin
+      nr := (((2 * (! q)) + (! r)) * (! l))
+      nn := (math2 (! q) (! k) (! r) (! l) (! t))
+      q := ((! q) * (! k))
+      t := ((! t) * (! l))
+      l := ((! l) + 2)
+      k := ((! k) + 1)
+      z := (! nn)
+      r := (! nr) 
+    end
+  done
+
+
+
+
+let _ = calcPi 5
+

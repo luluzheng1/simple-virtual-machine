@@ -1,0 +1,67 @@
+MODULE 4: ASSEMBLY
+10/05/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming partner,
+Mert Erden. Particularly, #6 and #9.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                 |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  On line 50 in assembler.sml, we define a function called 
+    duplicateLabelError that passes a message to Error.ERROR. The function 
+    signals that there is more than one definition of an existing label. Since 
+    labels are used to define a specific area of code and a goto <label> should 
+    always be deterministic, having multiple labels breaks the invariant by 
+    introducing ambiguity. This is equivalent to declaring multiple const 
+    variables with the same name in a C program. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  Right at the beginning.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  The instruction is getglobal and it's presented in allsyntax.sml like so:
+    r3 := globals["hello"]
+    The parser in one_line_instr that handles the getglobal instruction is on 
+    line 130 in asmparse.sml.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  The function loaded in loadfun.vs begins at line 1 and ends at line 21. Our 
+    parser will handle a loadfunc intruction by recognizing a "loadfunc" token 
+    followed by a register, a integer, and an opening bracket. Then it will use
+    the individual smaller parsers including one_line_instr and if_goto_instr 
+    to handle all the instructions inside the brackets. The loadfunc 
+    instruction will also be checked for a closing bracket and an end-of-line 
+    token by the loadfunend parser.
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  We wrote a generic binary operators parser that handled instructions that 
+    use binary operators including cons, =, <, >, +, /, *, etc. The parser was
+    failing whenever we ran it on allsyntax.vs. We tried to diagnose the fault 
+    by first re-writing our binary operator. Then we tried to remove the 
+    operators that it can recognize to unit-test which operator that the parser 
+    fails on. We eventually discovered that the = operator was failing every 
+    time. We realized that the existing code parses = differently than other 
+    operators. We circumvented this by renaming the = operator to eq. The 
+    instruction that uses = no longer exists in allsyntax.vs, it is now 
+    replaced with eq.  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  Our loadfun.vs essentially serves the same purpose as round-trip.vs. The 
+    instruction table begins on line 15 and ends on line 51 in instructions.c. 
+    Most of the relevant unparsing template is showcased from line 15 to line 
+    29. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  The examples for vScheme primitives is on line 4 and lines 20-39 in 
+    allsyntax.vs.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  The parser and unparser are a embedding/projection pair. The parser is the 
+    embedding and the unparser is the projection. The parser takes string 
+    representations of assembly code and embeds them as SML values. The 
+    unparser does the reverse; it takes SML values and projects them as 
+    strings. Also notice that the parser does not provide an opportunity to 
+    fail but the unparser will raise an Impossible.impossible assertion when 
+    handling an unrecognized instruction. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+9.  The <|> has the following type:
+    <|> : ('a Error, 'a Error) -> 'a Error
+    
+    The <|> has the following algebraic laws:
+    Error.ERROR a <|> b = b
+    a             <|> _ = a
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+10. Already claimed from last module's learning outcomes.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

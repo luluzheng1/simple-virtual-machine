@@ -1,0 +1,48 @@
+type tree = {left; right;}
+
+let item_check tree = if (null? (#tree.left tree))
+                      then 1
+                      else begin
+                        (1 + ((item_check (#tree.left tree)) + (item_check (#tree.right tree))))
+                      end
+
+let bottom_up_tree depth = if depth <= 0
+                           then #tree{left=[];right=[];}
+                           else let 
+                              ndepth = depth - 1
+                              l = (bottom_up_tree ndepth)
+                              in #tree{left=l;right=l;}
+
+let max x y = if x > y then x else y
+
+let max_depth = 1
+let min_depth = 0
+let depth = ref min_depth
+let max_depth = max (min_depth + 2) max_depth
+
+let power_helper x n res = if n == 0 
+                           then res
+                           else power_helper x (n - 1) (res * x)
+
+let power x n = power_helper x n 1
+
+let result = ref 0 
+
+let binary_trees min_depth max_depth =
+   while (! depth) <= max_depth do
+      let iterations = power 2 ((max_depth - (! depth)) + min_depth)
+          check = ref 0
+          start = ref 1
+      in while ((! start) <= iterations) do
+            check := ((! check) + (item_check (bottom_up_tree (! depth))))
+            start := ((! start) + 1)
+            result := (! check)
+         done
+      depth := ((! depth) + 2)
+      print (! result)
+      result := 0
+   done
+
+let _ = (binary_trees 0 2)
+
+

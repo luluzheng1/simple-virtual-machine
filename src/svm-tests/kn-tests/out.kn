@@ -1,0 +1,43 @@
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r1)]) 
+                (if $r3 
+                   $r2 
+                   (let* ([$r3 (car $r1)]
+                          [$r4 (let* ([$r4 append]
+                                      [$r5 (cdr $r1)]
+                                      [$r6 $r2]) 
+                                 ($r4 $r5 $r6))]) 
+                     (cons $r3 $r4)))))]) 
+  (set append $r3))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (pair? $r1)]) 
+                (if $r2 
+                   (let* ([$r2 (cdr $r1)]
+                          [$r3 (car $r1)]
+                          [$r4 append]
+                          [$r5 (let* ([$r5 mirror]
+                                      [$r6 $r2]) 
+                                 ($r5 $r6))]
+                          [$r6 (let* ([$r6 list1]
+                                      [$r7 (let* ([$r7 mirror]
+                                                  [$r8 $r3]) 
+                                             ($r7 $r8))]) 
+                                 ($r6 $r7))]) 
+                     ($r4 $r5 $r6)) 
+                   $r1)))]) 
+  (set mirror $r2))
+(begin 
+   (let ([$r0 (let* ([$r0 mirror]
+                     [$r1 (let* ([$r1 1]
+                                 [$r2 (let* ([$r2 2]
+                                             [$r3 '()]) 
+                                        (cons $r1 $r3))]) 
+                            (cons $r1 $r2))]) 
+                ($r0 $r1))]) 
+     (check $r0 '(mirror '(1 2)))) 
+   (let ([$r0 (let* ([$r0 2]
+                     [$r1 (let* ([$r1 1]
+                                 [$r2 '()]) 
+                            (cons $r1 $r2))]) 
+                (cons $r0 $r1))]) 
+     (expect $r0 ''(2 1))))

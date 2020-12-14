@@ -1,0 +1,13 @@
+let a = 3
+
+let _ = print a
+
+let compose f g = fun x -> f (g x) 
+
+let myList = [5;4;3;2;1]
+
+let _ = (filter (fun x -> true)) myList
+let _ = (map (fun x -> x + 1)) myList
+
+
+check-expect 3 3

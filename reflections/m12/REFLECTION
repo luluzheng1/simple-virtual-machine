@@ -1,0 +1,93 @@
+MODULE 12: BENCHMARKING AND TESTING
+12/07/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming 
+partner, Mert Erden.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  One test that Mert and I worked on and uploaded to benchmark-and-tests is 
+    applyNtimes.scm, which tests if closures are properly implemented, 
+    functions can be recursively called, tailcalls are implmented 
+    correctly, and if expressions.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  The benchmark that I pushed is binary-tree from The Computer Language 
+    Benchmarks Game. The test is ported from Ruby. The benchmark measure thes 
+    amount of time a system takes to create perfect binary trees before any 
+    tree nodes are garbage collected and check that the right number of nodes
+    has been allocated. I am able to confirm that the benchmark is implemented
+    correctly because the program outputs the same numbers as 
+    the Ruby benchmark when it runs through our svm.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  Mert and I uploaded storage.py and sieve.py. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  We discovered several bugs in the svm and the uft that we thankfully     
+    managed to fix before Sunday's submission. In particular, in closure 
+    conversion we failed to maintain a set of captured variables when 
+    encountering nested closures. We also added the WHILE and ASSIGN cases in 
+    codegen.sml, which were previously missing from return and also effectful 
+    VMOP_LIT operations within toReg'. Our CAPTURED case was also incorrect. In 
+    the svm, we had flipped the order of regX and regY in some unary operations 
+    such as IsNumber, IsNull, etc. We also made several changes in our garbage 
+    collector as a result of the last plenary code review. We believe that our 
+    svm passes all tests except for kntest2.scm, which uses (! as a function 
+    name whereas ! is an instruction in our svm) and slow-insertion.scm (which 
+    is a result of a bug in our garbage collection). 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  We ran allocfast.scm with problem size 9000 to see how the runtime and heap
+    size are affected by gamma.
+    gamma   avg time(sec)   # of gc    heap size (bytes)
+    2.0     1.70            2,339      2,131,200     
+    2.2     1.61            2,307      2,156,800
+    3.3     1.46            1,634      2,854,400
+    4.4     1.35            1,233      3,667,200
+    5.5     1.25            918        4,723,200                       
+    6.6     1.23            754        5,664,000
+    7.7     1.19            665        6,361,600
+    8.8     1.17            553        7,552,000
+    9.9     1.17            489        8,492,800
+    We decided to pick a gamma value of 5.5 for the most optical space and time
+    tradeoff. There is a .36 time decrease and about twice as much heap size 
+    needed than the default gamma value of 2.2. Any gamma value beyond 5.5 
+    seems difficult to justify choosing, simply because the heap size grows 
+    linearly while the time dwindles by only a little.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  The tests that run without errors are:
+        1.25    div2.scm
+        0.68    slowsort.scm
+        0.98    dumbfib.scm
+        1.28    stak.scm
+        0.26    derivative.scm
+        0.94    TAK.scm
+        4.87    permute-list.scm
+        0.89    awfy-bounce-pregen.scm
+        0.68    list.scm
+        0.78    tahr.scm
+        0.49    allocfast.scm
+        0.02    tower.scm
+    We weren't able to run the following tests:
+        whetstone.scm, did not implement arrays
+        storage-array.scm, did not implement arrays
+        permute-array.scm, did not implement arrays
+        sieve.scm, did not implement arrays
+        storage-list.scm, doesn't know what & (reference?) is
+        queens.scm, seg faults
+        fannkuch-redux.scm, takes too long
+        nbody.scm, uses ! where it is a different instruction for us
+        takl.scm, uses !n which isn't supported 
+    Some tests ran faster than others, some a bit slower. permute-list.scm 
+    seems like an outlier, but it runs approximately 5 seconds on Byron's svm. 
+    Most tests seem to be a little under or over than a second. We should 
+    probably implement arrays and fix the bugs within our svm. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  Our performance seem to be onpar with others' performance and our system
+    passes most of the basic tests.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  TAK.py takes 1.03 seconds 
+    TAK.scm takes 0.94 seconds on our svm.
+    I think that TAK.py runs slower than TAK.scm because Python is an 
+    interpreted language which is slower than direct machine code. Since its 
+    interpreter will interpret the script line by line and generate output, it 
+    takes a bit longer than TAK.scm, where the assembly code is already 
+    generated by the UFT.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

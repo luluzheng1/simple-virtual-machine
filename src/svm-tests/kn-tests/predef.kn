@@ -1,0 +1,560 @@
+(let ([$r2 (lambda ($r1) (let ([$r2 (car $r1)]) (car $r2)))]) 
+  (set caar $r2))
+(let ([$r2 (lambda ($r1) (let ([$r2 (cdr $r1)]) (car $r2)))]) 
+  (set cadr $r2))
+(let ([$r2 (lambda ($r1) (let ([$r2 (car $r1)]) (cdr $r2)))]) 
+  (set cdar $r2))
+(let ([$r2 (lambda ($r1) (let ([$r2 (cdr $r1)]) (cdr $r2)))]) 
+  (set cddr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 caar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set caaar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cadr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set caadr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cdar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set cadar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cddr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set caddr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 caar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cdaar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cadr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cdadr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cdar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cddar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cddr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cdddr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 caaar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set caaaar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 caadr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set caaadr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cadar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set caadar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 caddr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set caaddr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cdaar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set cadaar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cdadr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set cadadr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cddar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set caddar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cdddr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (car $r2)))]) 
+  (set cadddr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 caaar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cdaaar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 caadr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cdaadr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cadar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cdadar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 caddr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cdaddr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cdaar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cddaar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cdadr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cddadr $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cddar]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cdddar $r2))
+(let ([$r2 (lambda ($r1) 
+              (let ([$r2 (let* ([$r2 cdddr]
+                                [$r3 $r1]) 
+                           ($r2 $r3))]) 
+                (cdr $r2)))]) 
+  (set cddddr $r2))
+(let ([$r2 (lambda ($r1) (let ([$r2 '()]) (cons $r1 $r2)))]) 
+  (set list1 $r2))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (let* ([$r3 list1]
+                                [$r4 $r2]) 
+                           ($r3 $r4))]) 
+                (cons $r1 $r3)))]) 
+  (set list2 $r3))
+(let ([$r4 (lambda ($r1 $r2 $r3) 
+              (let ([$r4 (let* ([$r4 list2]
+                                [$r5 $r2]
+                                [$r6 $r3]) 
+                           ($r4 $r5 $r6))]) 
+                (cons $r1 $r4)))]) 
+  (set list3 $r4))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r1)]) 
+                (if $r3 
+                   $r2 
+                   (let* ([$r3 (car $r1)]
+                          [$r4 (let* ([$r4 append]
+                                      [$r5 (cdr $r1)]
+                                      [$r6 $r2]) 
+                                 ($r4 $r5 $r6))]) 
+                     (cons $r3 $r4)))))]) 
+  (set append $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r1)]) 
+                (if $r3 
+                   $r2 
+                   (let* ([$r3 revapp]
+                          [$r4 (cdr $r1)]
+                          [$r5 (let ([$r5 (car $r1)]) (cons $r5 $r2))]) 
+                     ($r3 $r4 $r5)))))]) 
+  (set revapp $r3))
+(let ([$r2 (lambda ($r1) 
+              (let* ([$r2 revapp]
+                     [$r3 $r1]
+                     [$r4 '()]) 
+                ($r2 $r3 $r4)))]) 
+  (set reverse $r2))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (let ([$r3 0]) (= $r1 $r3))]) 
+                (if $r3 
+                   (car $r2) 
+                   (let* ([$r3 nth]
+                          [$r4 (let ([$r4 1]) (- $r1 $r4))]
+                          [$r5 (cdr $r2)]) 
+                     ($r3 $r4 $r5)))))]) 
+  (set nth $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let* ([$r3 nth]
+                     [$r4 (let ([$r4 1]) (+ $r1 $r4))]
+                     [$r5 $r2]) 
+                ($r3 $r4 $r5)))]) 
+  (set CAPTURED-IN $r3))
+(let ([$r3 (lambda ($r1 $r2) (if $r1 $r2 $r1))]) (set and $r3))
+(let ([$r3 (lambda ($r1 $r2) (if $r1 $r1 $r2))]) (set or $r3))
+(let ([$r2 (lambda ($r1) (if $r1 #f #t))]) (set not $r2))
+(let ([$r2 (lambda ($r1) 
+              (let* ([$r2 or]
+                     [$r3 (symbol? $r1)]
+                     [$r4 (let* ([$r4 or]
+                                 [$r5 (number? $r1)]
+                                 [$r6 (let* ([$r6 or]
+                                             [$r7 (boolean? $r1)]
+                                             [$r8 (null? $r1)]) 
+                                        ($r6 $r7 $r8))]) 
+                            ($r4 $r5 $r6))]) 
+                ($r2 $r3 $r4)))]) 
+  (set atom? $r2))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (let* ([$r3 atom?]
+                                [$r4 $r1]) 
+                           ($r3 $r4))]) 
+                (if $r3 
+                   (= $r1 $r2) 
+                   (let ([$r3 (let* ([$r3 atom?]
+                                     [$r4 $r2]) 
+                                ($r3 $r4))]) 
+                     (if $r3 
+                        #f 
+                        (let* ([$r3 and]
+                               [$r4 (let* ([$r4 equal?]
+                                           [$r5 (car $r1)]
+                                           [$r6 (car $r2)]) 
+                                      ($r4 $r5 $r6))]
+                               [$r5 (let* ([$r5 equal?]
+                                           [$r6 (cdr $r1)]
+                                           [$r7 (cdr $r2)]) 
+                                      ($r5 $r6 $r7))]) 
+                          ($r3 $r4 $r5)))))))]) 
+  (set equal? $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let* ([$r3 list2]
+                     [$r4 $r1]
+                     [$r5 $r2]) 
+                ($r3 $r4 $r5)))]) 
+  (set make-alist-pair $r3))
+(let ([$r2 (lambda ($r1) (car $r1))]) (set alist-pair-key $r2))
+(let ([$r2 (lambda ($r1) 
+              (let* ([$r2 cadr]
+                     [$r3 $r1]) 
+                ($r2 $r3)))]) 
+  (set alist-pair-attribute $r2))
+(let ([$r2 (lambda ($r1) 
+              (let* ([$r2 alist-pair-key]
+                     [$r3 (car $r1)]) 
+                ($r2 $r3)))]) 
+  (set alist-first-key $r2))
+(let ([$r2 (lambda ($r1) 
+              (let* ([$r2 alist-pair-attribute]
+                     [$r3 (car $r1)]) 
+                ($r2 $r3)))]) 
+  (set alist-first-attribute $r2))
+(let ([$r4 (lambda ($r1 $r2 $r3) 
+              (let ([$r4 (null? $r3)]) 
+                (if $r4 
+                   (let* ([$r4 list1]
+                          [$r5 (let* ([$r5 make-alist-pair]
+                                      [$r6 $r1]
+                                      [$r7 $r2]) 
+                                 ($r5 $r6 $r7))]) 
+                     ($r4 $r5)) 
+                   (let ([$r4 (let* ([$r4 equal?]
+                                     [$r5 $r1]
+                                     [$r6 (let* ([$r6 alist-first-key]
+                                                 [$r7 $r3]) 
+                                            ($r6 $r7))]) 
+                                ($r4 $r5 $r6))]) 
+                     (if $r4 
+                        (let* ([$r4 (let* ([$r4 make-alist-pair]
+                                           [$r5 $r1]
+                                           [$r6 $r2]) 
+                                      ($r4 $r5 $r6))]
+                               [$r5 (cdr $r3)]) 
+                          (cons $r4 $r5)) 
+                        (let* ([$r4 (car $r3)]
+                               [$r5 (let* ([$r5 bind]
+                                           [$r6 $r1]
+                                           [$r7 $r2]
+                                           [$r8 (cdr $r3)]) 
+                                      ($r5 $r6 $r7 $r8))]) 
+                          (cons $r4 $r5)))))))]) 
+  (set bind $r4))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r2)]) 
+                (if $r3 
+                   '() 
+                   (let ([$r3 (let* ([$r3 equal?]
+                                     [$r4 $r1]
+                                     [$r5 (let* ([$r5 alist-first-key]
+                                                 [$r6 $r2]) 
+                                            ($r5 $r6))]) 
+                                ($r3 $r4 $r5))]) 
+                     (if $r3 
+                        (let* ([$r3 alist-first-attribute]
+                               [$r4 $r2]) 
+                          ($r3 $r4)) 
+                        (let* ([$r3 find]
+                               [$r4 $r1]
+                               [$r5 (cdr $r2)]) 
+                          ($r3 $r4 $r5)))))))]) 
+  (set find $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (cons 
+                 (lambda ($closure $r1) 
+                    (let* ([$r2 (car (cdr (cdr $closure)))]
+                           [$r3 (let* ([$r3 (car (cdr $closure))]
+                                       [$r4 $r1]) 
+                                  ($r3 $r4))]) 
+                      ($r2 $r3))) 
+                 (cons $r2 (cons $r1 '()))))]) 
+  (set o $r3))
+(let ([$r2 (lambda ($r1) 
+              (cons 
+                 (lambda ($closure $r1) 
+                    (let ([$r2 (car (cdr $closure))]) 
+                      (cons 
+                         (lambda ($closure $r1) 
+                            (let* ([$r2 (car (cdr (cdr $closure)))]
+                                   [$r3 (car (cdr $closure))]
+                                   [$r4 $r1]) 
+                              ($r2 $r3 $r4))) 
+                         (cons $r1 (cons $r2 '()))))) 
+                 (cons $r1 '())))]) 
+  (set curry $r2))
+(let ([$r2 (lambda ($r1) 
+              (cons 
+                 (lambda ($closure $r1 $r2) 
+                    (let* ([$r3 (let* ([$r3 (car (cdr $closure))]
+                                       [$r4 $r1]) 
+                                  ($r3 $r4))]
+                           [$r4 $r2]) 
+                      ($r3 $r4))) 
+                 (cons $r1 '())))]) 
+  (set uncurry $r2))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r2)]) 
+                (if $r3 
+                   '() 
+                   (let ([$r3 (let* ([$r3 $r1]
+                                     [$r4 (car $r2)]) 
+                                ($r3 $r4))]) 
+                     (if $r3 
+                        (let* ([$r3 (car $r2)]
+                               [$r4 (let* ([$r4 filter]
+                                           [$r5 $r1]
+                                           [$r6 (cdr $r2)]) 
+                                      ($r4 $r5 $r6))]) 
+                          (cons $r3 $r4)) 
+                        (let* ([$r3 filter]
+                               [$r4 $r1]
+                               [$r5 (cdr $r2)]) 
+                          ($r3 $r4 $r5)))))))]) 
+  (set filter $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r2)]) 
+                (if $r3 
+                   '() 
+                   (let* ([$r3 (let* ([$r3 $r1]
+                                      [$r4 (car $r2)]) 
+                                 ($r3 $r4))]
+                          [$r4 (let* ([$r4 map]
+                                      [$r5 $r1]
+                                      [$r6 (cdr $r2)]) 
+                                 ($r4 $r5 $r6))]) 
+                     (cons $r3 $r4)))))]) 
+  (set map $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r2)]) 
+                (if $r3 
+                   #f 
+                   (begin 
+                      (let* ([$r3 $r1]
+                             [$r4 (car $r2)]) 
+                        ($r3 $r4)) 
+                      (let* ([$r3 app]
+                             [$r4 $r1]
+                             [$r5 (cdr $r2)]) 
+                        ($r3 $r4 $r5))))))]) 
+  (set app $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r2)]) 
+                (if $r3 
+                   #f 
+                   (let ([$r3 (let* ([$r3 $r1]
+                                     [$r4 (car $r2)]) 
+                                ($r3 $r4))]) 
+                     (if $r3 
+                        #t 
+                        (let* ([$r3 exists?]
+                               [$r4 $r1]
+                               [$r5 (cdr $r2)]) 
+                          ($r3 $r4 $r5)))))))]) 
+  (set exists? $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (null? $r2)]) 
+                (if $r3 
+                   #t 
+                   (let ([$r3 (let* ([$r3 $r1]
+                                     [$r4 (car $r2)]) 
+                                ($r3 $r4))]) 
+                     (if $r3 
+                        (let* ([$r3 all?]
+                               [$r4 $r1]
+                               [$r5 (cdr $r2)]) 
+                          ($r3 $r4 $r5)) 
+                        #f)))))]) 
+  (set all? $r3))
+(let ([$r4 (lambda ($r1 $r2 $r3) 
+              (let ([$r4 (null? $r3)]) 
+                (if $r4 
+                   $r2 
+                   (let* ([$r4 $r1]
+                          [$r5 (car $r3)]
+                          [$r6 (let* ([$r6 foldr]
+                                      [$r7 $r1]
+                                      [$r8 $r2]
+                                      [$r9 (cdr $r3)]) 
+                                 ($r6 $r7 $r8 $r9))]) 
+                     ($r4 $r5 $r6)))))]) 
+  (set foldr $r4))
+(let ([$r4 (lambda ($r1 $r2 $r3) 
+              (let ([$r4 (null? $r3)]) 
+                (if $r4 
+                   $r2 
+                   (let* ([$r4 foldl]
+                          [$r5 $r1]
+                          [$r6 (let* ([$r6 $r1]
+                                      [$r7 (car $r3)]
+                                      [$r8 $r2]) 
+                                 ($r6 $r7 $r8))]
+                          [$r7 (cdr $r3)]) 
+                     ($r4 $r5 $r6 $r7)))))]) 
+  (set foldl $r4))
+(let ([$r0 10]) (set newline $r0))
+(let ([$r0 40]) (set left-round $r0))
+(let ([$r0 32]) (set space $r0))
+(let ([$r0 41]) (set right-round $r0))
+(let ([$r0 59]) (set semicolon $r0))
+(let ([$r0 123]) (set left-curly $r0))
+(let ([$r0 39]) (set quotemark $r0))
+(let ([$r0 125]) (set right-curly $r0))
+(let ([$r0 91]) (set left-square $r0))
+(let ([$r0 93]) (set right-square $r0))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let* ([$r3 not]
+                     [$r4 (> $r1 $r2)]) 
+                ($r3 $r4)))]) 
+  (set <= $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let* ([$r3 not]
+                     [$r4 (< $r1 $r2)]) 
+                ($r3 $r4)))]) 
+  (set >= $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let* ([$r3 not]
+                     [$r4 (= $r1 $r2)]) 
+                ($r3 $r4)))]) 
+  (set != $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (> $r1 $r2)]) 
+                (if $r3 $r1 $r2)))]) 
+  (set max $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (< $r1 $r2)]) 
+                (if $r3 $r1 $r2)))]) 
+  (set min $r3))
+(let ([$r2 (lambda ($r1) (let ([$r2 0]) (- $r2 $r1)))]) 
+  (set negated $r2))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (let ([$r3 (/ $r1 $r2)]) (* $r2 $r3))]) 
+                (- $r1 $r3)))]) 
+  (set mod $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (let ([$r3 0]) (= $r2 $r3))]) 
+                (if $r3 
+                   $r1 
+                   (let* ([$r3 gcd]
+                          [$r4 $r2]
+                          [$r5 (let* ([$r5 mod]
+                                      [$r6 $r1]
+                                      [$r7 $r2]) 
+                                 ($r5 $r6 $r7))]) 
+                     ($r3 $r4 $r5)))))]) 
+  (set gcd $r3))
+(let ([$r3 (lambda ($r1 $r2) 
+              (let ([$r3 (let ([$r3 0]) (= $r1 $r3))]) 
+                (if $r3 
+                   0 
+                   (let ([$r3 (let ([$r3 (let* ([$r3 gcd]
+                                                [$r4 $r1]
+                                                [$r5 $r2]) 
+                                           ($r3 $r4 $r5))]) 
+                                (/ $r2 $r3))]) 
+                     (* $r1 $r3)))))]) 
+  (set lcm $r3))
+(let ([$r5 (lambda ($r1 $r2 $r3 $r4) 
+              (let ([$r5 (let* ([$r5 list3]
+                                [$r6 $r2]
+                                [$r7 $r3]
+                                [$r8 $r4]) 
+                           ($r5 $r6 $r7 $r8))]) 
+                (cons $r1 $r5)))]) 
+  (set list4 $r5))
+(let ([$r6 (lambda ($r1 $r2 $r3 $r4 $r5) 
+              (let ([$r6 (let* ([$r6 list4]
+                                [$r7 $r2]
+                                [$r8 $r3]
+                                [$r9 $r4]
+                                [$r10 $r5]) 
+                           ($r6 $r7 $r8 $r9 $r10))]) 
+                (cons $r1 $r6)))]) 
+  (set list5 $r6))
+(let ([$r7 (lambda ($r1 $r2 $r3 $r4 $r5 $r6) 
+              (let ([$r7 (let* ([$r7 list5]
+                                [$r8 $r2]
+                                [$r9 $r3]
+                                [$r10 $r4]
+                                [$r11 $r5]
+                                [$r12 $r6]) 
+                           ($r7 $r8 $r9 $r10 $r11 $r12))]) 
+                (cons $r1 $r7)))]) 
+  (set list6 $r7))
+(let ([$r8 (lambda ($r1 $r2 $r3 $r4 $r5 $r6 $r7) 
+              (let ([$r8 (let* ([$r8 list6]
+                                [$r9 $r2]
+                                [$r10 $r3]
+                                [$r11 $r4]
+                                [$r12 $r5]
+                                [$r13 $r6]
+                                [$r14 $r7]) 
+                           ($r8 $r9 $r10 $r11 $r12 $r13 $r14))]) 
+                (cons $r1 $r8)))]) 
+  (set list7 $r8))
+(let ([$r9 (lambda ($r1 $r2 $r3 $r4 $r5 $r6 $r7 $r8) 
+              (let ([$r9 (let* ([$r9 list7]
+                                [$r10 $r2]
+                                [$r11 $r3]
+                                [$r12 $r4]
+                                [$r13 $r5]
+                                [$r14 $r6]
+                                [$r15 $r7]
+                                [$r16 $r8]) 
+                           ($r9 $r10 $r11 $r12 $r13 $r14 $r15 $r16))]) 
+                (cons $r1 $r9)))]) 
+  (set list8 $r9))

@@ -1,0 +1,5 @@
+.load module 4
+loadliteral 0 2
+check 0 string 1 50
+loadliteral 0 1
+expect 0  string 1 49

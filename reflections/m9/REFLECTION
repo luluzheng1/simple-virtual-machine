@@ -1,0 +1,53 @@
+MODULE 9: K-NORMALIZATION
+11/09/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming partner, Mert Erden.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  I believe that the source code compiles.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  The LET case on line 106 contains a continuation passed into bindSmallest. 
+    The continuation first updates the current environment, rho and register 
+    set, A, to rho' and A' by folding over a list of tuples of names and 
+    registers. For every register that is allocated, the register set is 
+    updated by --. This ensures that whenever a register is being used, it is 
+    never one that is already used. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  The IFX case on line 94 contains a continuation passed into bindAnyReg that    allows the immediate register reuse. This happens nowhere in the 
+    continuation is it explicitedly updating the register set using --. Rather 
+    the same register set A is passed into the evaluation of e2 and e3.  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  The PRIMCALL case on line 76
+    The FUNCALL case on line 89
+    The LET case on line 96
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  Consecutive registers occur on line 92 (FUNCALL case), which happens 
+    implcitly by the bindSmallest policy. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  I believe that running uft fo-kn kntest.scm generates code and that each 
+    test is documented.  
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  When we submitted our code on Monday night, we were getting a "SetError: 
+    invalid register set" error. We didn't get to debug it in time. Tonight we 
+    took a second try at debugging and two small bug fixes. 
+    One is in the -- function where we had previously raised a "SetError" is 
+    now just returning the specified register in RS. The other is a small fix 
+    in our mov instruction where we flipped the X and Y register. And now our 
+    system passes all 22 tests in scheme105.scm! Mert will be providing the 
+    updated code along with his REFLECTION tonight. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  We chose the policy bindSmallest over bindAnyReg for the reason that it 
+    doesn't try to optimize for the case of an expression already in a 
+    register. We'll show this with an example: 
+
+    (define snd (x y) (let ([x y] [y x]) x))
+
+    (snd 1 2) ; produces 2 in bindSmallest, 1 in bindAnyReg
+
+    In this case, x and y are local names and are already in registers, so if 
+    we chose bindAnyReg no code will be generated, hence no swap. We are 
+    concerned with this behavior since it might be confusing to the user 
+    because the output kn code will not show the swap explicitedly nor does the    output produce any errors. We find bindSmallest to be a better policy 
+    because it will swap x and y, a behavior that is more reasonable. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

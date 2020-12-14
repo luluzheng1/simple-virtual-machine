@@ -1,0 +1,3 @@
+let v = (if true then "lulu is queen" else ("lulu is not queen"))
+
+let v = (3)

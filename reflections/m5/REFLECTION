@@ -1,0 +1,61 @@
+MODULE 5: K-NORMAL FORM  
+10/12/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming partner,
+Mert Erden.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                 |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  (begin $r2 (let* ([$r2 0] [$r3 1]) (+ $r2 $r3)))
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  let t1 = 1
+    in +(n, t1)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  (let* ([$t1 1] [n e]) (+ n t1))
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  'a : formal parameter, local variable, user-defined function, primitive
+         function
+    vmop: global variable, primitive function
+    literal: primitive function
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  I pick Python as my language of choice. To use K-normal form as a target
+    for python, one would implement an embedder that translates python code 
+    into k-normal form code. This is possible given that we've written 
+    embedders from one language to another. However, I can't foresee any 
+    potential benefit from doing that. Python is a language that supports OOP 
+    and K-normal form is a functional language that doesn't support classes or 
+    objects. I don't think it would be wise to extent to K-normal form for the 
+    level of complexity involved and little benefits reaped from doing so. 
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  1. It's a good idea to have K-normal form expressions be a subset of Scheme 
+    expressions because it is easier to parse the S-expressions that Scheme 
+    has. It is a subset that satisfies only a number of invariants and 
+    restrictions in Scheme. This keep the syntactic structure simple to 
+    generate code from without requiring a ton of semantic analysis.
+
+    2. It's a good idea to have K-normal form literals be a superset of Scheme 
+    values so that other languages other than Vscheme can be easily translated 
+    to K-normal form if one wishes to write an embedder for it. Having more 
+    literals would allow parts that are unique to a specific language to have a 
+    representation in K-normal form.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  (lambda (x) (cdr x))
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  Yes, the body of the eta-expansion satisfies all the invariants of the 
+    K-normal form. The value of every immediate expression has a name because 
+    eta-expression treats every parameter as a local variable and I don't 
+    expect to see nested function definitions in the body.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+9.  We believe that running uft kn-kn produces a sensible result.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+10. On line 56 in uft.sml and line 46 in projectkn.sml. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+11. Our tests tell us that all parts of the code seem to work except for one
+    case. There is a bug during the process of translating set to setglobal 
+    function. The bug can be replicated by running good.scm. We are not sure 
+    why the Vscheme code (let ([$r1 10]) (set $r0 $r1)) translates to K-normal 
+    form (let ([$r1 10]) (set $r0 '$r1)), where set is not translated to 
+    setglobal.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+12. A [| (Goto, label), offset, rho |] = Goto $((Env.find(rho) label) - offset)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -1,0 +1,14 @@
+let applyNTimes n f x = if n == 0
+                      then x
+                      else applyNTimes (n - 1) f (f x)
+
+let twice x = x * 2
+let square x = x * x
+
+let applyTwice2Times = applyNTimes 2 twice 10
+let applyTwice10Times = applyNTimes 10 twice 1
+let applySquare2Times = applyNTimes 2 square 10
+
+check-expect applyTwice2Times 40
+check-expect applyTwice10Times 1024
+check-expect applySquare2Times 10000

@@ -1,0 +1,14 @@
+.load module 5
+.load 0 function 1 8
+loadliteral 2 0
+eq 2 1 2
+if 2
+goto 4
+loadliteral 2 1
+- 1 1 2
+call 0 0 1
+return 1
+setglobal 0 string 3 98 105 103
+loadliteral 1 555
+call 0 0 1
+print 0

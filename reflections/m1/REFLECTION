@@ -1,0 +1,92 @@
+MODULE 1: VIRTUAL MACHINE STATE
+09/14/2020
+Lulu Zheng
+Acknowledgment: I discussed conceptually with my programming partner, 
+Mert Erden, about some of the questions in the learning outcomes. 
+Particularly, #2, 4, 5, 6, 7.   
+-------------------------------------------------------------------------------
+|  REFLECTION                                                                 |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1. The code compiles and runs tests as expected.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2. Instructions that only Embed Values:
+    * Zero
+   Instructions that only Project Values:
+    * Check
+    * Expect
+   Instructions that Do Both:
+    * Add
+    * ProjectBool
+   Instructions that Do Neither:
+    * Halt
+    * Print
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3. asBool_, located on line 211 in value.h.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4. The semantic state contains the following components:
+    * An instruction stream, which is accessed by the instruction pointer. In 
+    our VMState struct, we represent the instruction pointer as Instruction 
+    *ip. It has access to the instruction stream implicitly, by virtue of C 
+    arrays. 
+    * A register file, which is represented as an array that can store up to 
+    256 Values. Each cell in the array is a register and represents a location 
+    in which its contents are the values. 
+    * A literal pool, which is represented as an array of Values where 
+    semantically and literally, every index stands for a Value.
+    * A global-variable table is represented as a VTable_T, which is a hash 
+    table where the key and value are both Values. This is semantically 
+    equivalent to the global-variable table as locations are also Values in our 
+    VM. 
+    * A store, which is not explicitly represented in struct VMState, and is 
+    instead implicitly the C heap. Any access to an array is semantically 
+    equivalent to calling the store function on a location. Accessing arrays in 
+    C is equivalent to deferencing a pointer. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5. Transition rule SETBLOBALVAR 
+
+σ(R(X)) ∈ dom G       l = G(σ(R(x)))      v = σ(R(Y))
+_____________________________________________________________________________
+⟨I1•setGlobalVar(X,Y)⋅I2,R,L,G,σ⟩ → ⟨I1⋅setGlobalVar(X,Y)•I2,R,L,G,σ{l → v}⟩
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6. Intruction *ip, which is the instruction pointer. ip points to the current  
+   instruction being executed, and it's being deferenced at every instruction. 
+   Because of how frequently it's used in vmrun.c, we believe that it would 
+   stored in real machine registers. 
+   vm->registers. All the instructions that's currently being supported in 
+   vmrun.c uses vm->registers to refer to the first index of the register array
+   vm->literals. We expect that in the future vm->literals will be as 
+   frequently used as vm->registers and will be stored in the machine registers 
+   for the same reason. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7. * The Nil tag would be useful in implementing Python because Python has the  
+     None value, which is equivalent to nil and helps to check a value's existence.
+   * The Boolean tag would be useful because boolean values exist in Python and
+     conditional execution of a statement is dependent on the evaluation of a 
+     boolean expression.
+   * The Number tag would be useful because Python has arithmetic.
+   * The String tag would be useful because Python the string module is part of 
+     the Python standard library. Furthermore, strings are immutable in Python.
+   * The EmptyList and the ConsCell tag would not be useful because Python 
+     delegates such actions to Block and Seq 
+   * VMFunction would be useful as functions in Python are first class
+   * VMClosure would be useful as functions in Python have closures.
+   * Blocks might be useful as there might be data structures that rely on 
+     fixed block sizes.
+   * Seq would be useful as Lists in Python are unboxed structures.
+   * Table's would be useful as everything in Python is an object that stores  
+     all methods in Hash Tables/ Dictionaries.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8. The module that I pick is vtable.h from "Code you will look at and     
+   understand". Three languages that I think vtable.h could help implement are 
+   Python, and Perl. Especially, vtable.h would help implement Python expand on
+   their dictionary library. In python, the built-in dict class will raise a 
+   KeyError when a user attempts to access a non existent key. There is a 
+   subclass called defaultdict, that resembles more like the VTable_T, where it
+   is initialized with a function called the default factory that provies the 
+   default value for a non existent key. This is similar to how VTable_T treats 
+   a missing entry equivalent to 'nil', therefore it always succeeds. What's 
+   special about VTable_T is that it is designed to store Values. Perhaps  
+   vtable.h would give insight as to how Python could expand on its dict class 
+   to have a specialized dictionary that only stores values of defined types 
+   such as Boolean, Number, and String. However, Python is weakly-typed and may 
+   find the tags in value.h helpful to implementing a type system of its own.  

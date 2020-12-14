@@ -1,0 +1,5 @@
+let listN n = if n == 0 
+              then [] 
+              else n :: (listN (n - 1))
+
+let myList = listN 10

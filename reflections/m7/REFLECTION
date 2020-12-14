@@ -1,0 +1,49 @@
+MODULE 7: FUNCTIONS IN THE VIRTUAL MACHINE
+10/26/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming partner,
+Mert Erden.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                 |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  R ⊕ r0 is implemented on line 216 in vmrun.c.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  Line 226 computes σ(R(r)) and line 227 updates location R′(r′) in σ. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  I believe that running those two commands should terminate with sensible
+    different error messages and that no memory errors are detected by valgrind.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  We realized now that we submitted an old version of overstack.vs and 
+    overtail.vs on Sunday night, but I will attach an updated overstack.vs and 
+    overtail.vs as part of this REFLECTION. Please use those copies as 
+    reference. We're sorry!
+    According to the new copies, the only difference between the two files is 
+    on line 8. Specifically, overstack.vs recursively calls the function using 
+    call (r0 := call r0 (r1)) and overstack using tailcall(tailcall r0 (r1))
+    .    
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  An invariant that the representation of struct VMFunction must satisfy is 
+    that a function uses at most nregs (one more than the number of highest
+    register read or written) in the function call.
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  The invariant is exploited in the Call and TailCall case; specifically,   
+    it's exploited to detect register overflow. (I don't think our code
+    currently does that though.)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  One performance benefit of using register windows is everything can be 
+    performed in-place by simply changing where the register window pointer 
+    points to. Compared to a fixed set of 256 VM registers, there is no need to
+    store intermediate values and state in another temporary data structure 
+    after the completion of function. Thus there's significantly less copying 
+    happening.
+    One performance cost of using register windows is that it greatly enlarges 
+    our register file. Rather than having 256 registers, we can now have 10,000 
+    registers. Furthermore, we still need to copy values using memmove in the 
+    TailCall case. There is also extra overhead for pointer redirections, error 
+    handling and error recovery in case an invalid shift causes illegal memory 
+    access.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  1. User-Defined Datatypes as in Haskell
+    2. Pattern Matching as in Haskell
+    3. Coroutines as in Erlang 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

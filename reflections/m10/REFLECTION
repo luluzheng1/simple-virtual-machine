@@ -1,0 +1,50 @@
+MODULE 10: CLOSURE CONVERSION
+11/16/2020
+Lulu Zheng
+* Acknowledgment: I discussed the learning outcomes with my programming partner, Mert Erden.
+-------------------------------------------------------------------------------
+|   REFLECTION                                                                |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1.  (val one 1)
+    (define add_then_plus_one (x) (lambda (y) (+ y (+ x one))))
+    Primitive: +
+    Global name: one
+    Local name: y
+    Captured name: x
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2.  There are two places that determine what variable are captured by closures.
+    On lines 66-71 in closure-convert.sml, where the closure is created. The 
+    free variables inside a closure is decided by free. If we take a look at 
+    the GLOBAL case in free on line 35, the right hand side is an empty set, 
+    meaning that the free variables set will never include a global variable. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+3.  Closures and captured variables are embedded into ordinary vScheme on lines
+    51-62 in clscheme.sml, i.e. the C.CAPTURED and C.CLOSURE cases inside the
+    exp function. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+4.  The getclslot instruction on lines 427-432 in vmrun.c corresponds to the
+    CAPTURED-IN function in vScheme. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+5.  The C.CLOSURE case on lines 128-133 in knormalize.sml keeps track of which
+    variables is in what registers. Before we get to inside the closure, all of 
+    the captured variables are bind to registers using nbRegs and bindAnyReg.
+    Inside the closure, the code has access to the captured variables through
+    captured, the second argument that is passed into C.CLOSURE. Additionally,
+    our funcode function on line 86, we reserve an extra register at the
+    beginning of the parameter list for the closure. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+6.  If we did not properly identify all captured variables, the compiler would
+    fail on line 97 in knormalize.sml. Specifically, this happens in the C.
+    LOCAL case when E.find(n, rho) does not successfully find the associated 
+    name n in rho. When a variable that was supposed to be captured is referred 
+    to, the variable does not exist in the closure, so any attempts to find the 
+    variable will result in a failure! We've learned this the hard way, and I 
+    remember the error was "Name not found!".
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+7.  If the detector doesn't work, the compiler will fail in the X.SETLOCAL case
+    on lines 80-81 in closure-convert.sml, where if n is a captured variable
+    then an Impossible.impossible is raised. 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+8.  Line 141 in knormalize.sml builds the environment used to compile the
+    right-hand sides and the body of a LETREC.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

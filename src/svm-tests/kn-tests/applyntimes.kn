@@ -1,0 +1,53 @@
+(let ([$r2 (lambda ($r1) 
+              (cons 
+                 (lambda ($closure $r1) 
+                    (cons 
+                       (lambda ($closure $r1) 
+                          (let ([$r2 (let* ([$r2 (car 
+                                                    (cdr 
+                                                       (cdr $closure)))]
+                                            [$r3 0]) 
+                                       (= $r2 $r3))]) 
+                            (if $r2 
+                               $r1 
+                               (let* ([$r2 (let* ([$r2 (let* ([$r2 
+                                                                   applyNTimes]
+                                                              [$r3 
+                                                                   (let* ([$r3 
+                                                                               (car 
+                                                                                  (cdr 
+                                                                                     (cdr 
+                                                                                        $closure)))]
+                                                                          [$r4 
+                                                                               1]) 
+                                                                     (- 
+                                                                        $r3 
+                                                                        $r4))]) 
+                                                         ($r2 $r3))]
+                                                  [$r3 (car 
+                                                          (cdr 
+                                                             $closure))]) 
+                                             ($r2 $r3))]
+                                      [$r3 (let* ([$r3 (car 
+                                                          (cdr 
+                                                             $closure))]
+                                                  [$r4 $r1]) 
+                                             ($r3 $r4))]) 
+                                 ($r2 $r3))))) 
+                       (cons $r1 (cons $r1 '())))) 
+                 (cons $r1 '())))]) 
+  (set applyNTimes $r2))
+(let ([$r2 (lambda ($r1) (let ([$r2 2]) (* $r1 $r2)))]) (set twice $r2))
+(let ([$r0 (let* ([$r0 (let* ([$r0 (let* ([$r0 applyNTimes]
+                                          [$r1 2]) 
+                                     ($r0 $r1))]
+                              [$r1 twice]) 
+                         ($r0 $r1))]
+                  [$r1 10]) 
+             ($r0 $r1))]) 
+  (set applyTwice2Times $r0))
+(begin 
+   (let ([$r0 applyTwice2Times]) 
+     (check $r0 'applyTwice2Times)) 
+   (let ([$r0 40]) 
+     (expect $r0 '40)))

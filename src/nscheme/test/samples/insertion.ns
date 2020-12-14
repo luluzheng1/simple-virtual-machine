@@ -1,0 +1,28 @@
+let list1 x = x :: [] 
+let curriedLt x y = x < y
+let curriedGt x y = x > y
+let mkInsertionSort op? = let rec
+  insert = fun x xs -> if null? xs 
+                      then list1 x
+                      else if op? x (hd xs) 
+                          then x :: xs 
+                          else (hd xs) :: (insert x (tl xs))
+  sort = fun xs -> if null? xs then [] else insert (hd xs) (sort (tl xs))
+  in sort
+
+let sortIncreasing = mkInsertionSort curriedLt
+let sortDecreasing = mkInsertionSort curriedGt
+
+check-expect (sortIncreasing [3;2;1]) [1;2;3] 
+check-expect (sortIncreasing [6;9;1;7;4;3;8;5;2;10]) [1;2;3;4;5;6;7;8;9;10]
+check-expect (sortDecreasing [6;9;1;7;4;3;8;5;2;10]) [10;9;8;7;6;5;4;3;2;1]
+
+let listN n = if n == 0 
+            then [] 
+            else n :: (listN (n - 1))
+
+let my1000List = listN 1000
+let my10000List = listN 10000 
+
+check-expect (sortIncreasing my1000List) (reverse my1000List)
+check-expect (sortIncreasing my10000List) (reverse my10000List)

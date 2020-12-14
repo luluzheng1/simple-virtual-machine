@@ -1,0 +1,12 @@
+(let ([$r2 (lambda ($r1) 
+              (cons 
+                 (lambda ($closure $r1) 
+                    (cons 
+                       (lambda ($closure $r1) 
+                          (let* ([$r2 $r1]
+                                 [$r3 (car (cdr $closure))]
+                                 [$r4 $r1]) 
+                            ($r2 $r3 $r4))) 
+                       (cons $r1 '()))) 
+                 (cons $r1 '())))]) 
+  (set curry $r2))

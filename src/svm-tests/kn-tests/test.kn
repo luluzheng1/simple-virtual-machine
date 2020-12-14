@@ -1,0 +1,13 @@
+(begin 
+   (let ([$r0 (let ([$r0 3]) (number? $r0))]) 
+     (check $r0 '(number? 3))) 
+   (let ([$r0 #t]) 
+     (expect $r0 '#t)))
+(begin 
+   (let ([$r0 (let ([$r0 'really?]) (number? $r0))]) 
+     (check $r0 '(number? 'really?))) 
+   (let ([$r0 #f]) 
+     (expect $r0 '#f)))
+(let ([$r0 (let ([$r0 'really?]) (symbol? $r0))]) 
+  (check-assert $r0 '(symbol? 'really?)))
+(let ([$r0 3]) (set x $r0))

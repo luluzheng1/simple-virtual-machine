@@ -1,0 +1,35 @@
+<instruction> ::= <objectcode>
+         |  def <label>
+         |  goto <label>
+         |  if $<reg> 
+            goto <label>
+         |  <loadfunc>
+
+<objectcode> ::= $<reg> := $<reg> <binop> $<reg>
+              |  $<reg> := <unop> $<reg>
+              |  <sideeffectop> $<reg>
+              |  halt
+              |  zero $<reg>
+              |  mov $<reg> $<reg>
+              |  ~ $<reg>
+              |  ! $<reg>
+              |  $<reg> := Bool($<reg>)
+              |  check $<reg> string
+              |  expect $<reg> string
+              |  $<reg> := <literal>
+              |  globals[<literal>] := $<reg>
+              |  $<reg> := globals[<literal>]
+
+<binop> ::= cons | eq | > | < | idiv | + | - | / | *
+
+<unop> ::= function? | pair? | symbol? | number? | boolean? | null? | nil? | car | cdr | hash
+
+<sideeffectop> ::= error | printu | print | println
+
+<loadfunc> ::= loadfunc $<reg> int {instructions}
+
+<label> ::= string
+
+<reg> ::= rX, where X is an integer ranging from 0-255
+
+<literal> ::= int | string | real | bool | emptylist | nil

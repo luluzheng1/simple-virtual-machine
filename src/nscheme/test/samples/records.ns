@@ -1,0 +1,14 @@
+type foo = {a;b;c;}
+
+let x = #foo{a=3; b=10; c=13;}
+let y = #foo.a x 
+
+check-expect y 3
+
+
+let test x = match x with
+  | foo {a=z; b=10;} -> z
+  | y -> y
+  | 3 -> 3
+
+let _ = print (test x)
